@@ -3,26 +3,35 @@ import '@tarojs/async-await'
 import { Provider } from '@tarojs/redux'
 
 import Index from './pages/index'
+import Home from './pages/home/home'
 
 import configStore from './store'
 
 import './app.scss'
+
+if (process.env.TARO_ENV === "weapp") {
+  require("taro-ui/dist/weapp/css/index.css")
+} else if (process.env.TARO_ENV === "h5") {
+  require("taro-ui/dist/h5/css/index.css")
+}
 
 const store = configStore()
 
 class App extends Component {
   config = {
     pages: [
-      'pages/index/index',
+      // 'pages/index/index',
+      'pages/home/home',
       'pages/classify/classify',
       'pages/shopCart/shopCart',
       'pages/mine/mine'
     ],
     window: {
       backgroundTextStyle: 'dart',
-      navigationBarBackgroundColor: '#fff',
+      navigationBarBackgroundColor: '#ff6a3c',
       navigationBarTitleText: 'WeChat',
-      navigationBarTextStyle: 'black'
+      navigationBarTextStyle: 'white',
+      enablePullDownRefresh: true
     },
 
     tabBar: {
@@ -33,7 +42,7 @@ class App extends Component {
       list: [
         {
           text: '首页',
-          pagePath: 'pages/index/index',
+          pagePath: 'pages/home/home',
           iconPath: 'assets/images/icon_home.png',
           selectedIconPath: 'assets/images/icon_home_active.png'
         },
@@ -70,7 +79,7 @@ class App extends Component {
   render () {
     return (
       <Provider store={store}>
-        <Index />
+        <Home />
       </Provider>
     )
   }

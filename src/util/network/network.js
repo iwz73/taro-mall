@@ -1,5 +1,11 @@
 
 import Taro from '@tarojs/taro'
+import md5 from '../md5'
+import util from '../util'
+
+const API_SECRET_KEY = 'www.mall.cycle.com'
+const TIMESTAMP = util.getCurrentTime()
+const SIGN = md5.hex_md5((TIMESTAMP + API_SECRET_KEY).toLowerCase())
 
 
 /**
@@ -29,22 +35,63 @@ export const post = (url, data, header) => request('POST', url, data, header)
  * @param {*} header 请求头
  * @returns {*} data
  */
-export function request(method, url, data, header = {'Content-Type': 'application/json'}) {
+export function request(method, url, data = {}, header = {'Content-Type': 'application/json'}) {
+
+  console.log(url)
+  console.log(data)
 
   Taro.showLoading({
     title: '加载中...'
   })
 
-  let task = Taro.request({
-    url, method, data, header,
-  }).then(res => {
+  // 添加请求参数
+  // const params = data || {}
+  data.sign = SIGN
+  data.time = TIMESTAMP
+  
+  console.log(SIGN)
+  console.log(TIMESTAMP)
+  console.log(data)
 
-    Taro.hideLoading()
+  const response = {};
 
-    if (res.data.success) {
-      return res.data.data
-    } else {
-      console.log('=====请求失败：' + res.data.error + '=====')
-    }
-  })
+  return new Promise((resolve, reject) => {
+    Taro.showLoading({
+        title: '加载中...',
+    })
+    const response = {};
+    Taro.request({
+        url, method, data, header,
+        success: (res) => {
+           
+            if (res.data.code === "0") { 
+                response.success = res.data; // 你将在then方法中看到的数据
+            } else {
+                Taro.showToast({
+                    title: res.data.errMsg,
+                    icon: 'none',
+                    duration: 2000
+                })
+                response.fail = res.data.errMsg; // 你将在catch方法中接收到该错误
+            }
+        },
+        fail: (error) => response.fail = error,
+        complete() {
+            Taro.hideLoading()
+        
+            console.group('==============>请求开始<==============');
+            console.info(method, url);
+            if (response.success) {
+                console.info('请求成功', response.success);
+                resolve(response.success)
+            } else {
+                console.info('请求失败', response.fail);
+                reject(response.fail)
+            }
+            console.info('==============>请求结束<==============');
+            console.groupEnd();
+        },
+    });
+  });
+  
 }

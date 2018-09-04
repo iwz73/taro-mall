@@ -1,0 +1,21 @@
+
+/* 全局颜色 */
+$theme-color: #ff6a3c;
+$bg-color: #efeff4;
+$line-color: #dedfe0;
+
+/* 字体大小 */
+$fs-30: 30px;
+$fs-35: 35px;
+
+
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  box-sizing: border-box;
+}
+
