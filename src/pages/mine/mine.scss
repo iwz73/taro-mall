@@ -1,0 +1,24 @@
+
+@import '../../app';
+
+.user-info {
+  background: $theme-color;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 25px 0;  
+
+  color: white;
+  font-size: 30px;
+
+  /* 去掉button 的背景和边框 */
+  .user-btn {
+    background: none;
+    &::after {
+      content: '';
+      border: none
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import '@tarojs/async-await'
-import { Provider } from '@tarojs/redux'
+import { Provider, connect } from '@tarojs/redux'
 
 import Index from './pages/index'
 import Home from './pages/home/home'
@@ -8,6 +8,7 @@ import Home from './pages/home/home'
 import configStore from './store'
 
 import './app.scss'
+import { getSystemInfo } from './actions/counter';
 
 if (process.env.TARO_ENV === "weapp") {
   require("taro-ui/dist/weapp/css/index.css")
@@ -16,6 +17,17 @@ if (process.env.TARO_ENV === "weapp") {
 }
 
 const store = configStore()
+
+const mapStateToProps = ({counter}) => ({
+  counter
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  getSystemInfo() {
+    dispatch(getSystemInfo())
+  }
+})
+@connect(mapStateToProps, mapDispatchToProps)
 
 class App extends Component {
   config = {
@@ -31,7 +43,7 @@ class App extends Component {
       navigationBarBackgroundColor: '#ff6a3c',
       navigationBarTitleText: 'WeChat',
       navigationBarTextStyle: 'white',
-      enablePullDownRefresh: true
+      enablePullDownRefresh: false
     },
 
     tabBar: {
@@ -68,7 +80,15 @@ class App extends Component {
     }
   }
 
-  componentDidMount () {}
+  globalData = {}
+
+  componentWillReceiveProps(nextProps) {
+    console.log(this.props, nextProps)
+  }
+
+  componentDidMount () {
+    this.props.getSystemInfo()
+  }
 
   componentDidShow () {}
 

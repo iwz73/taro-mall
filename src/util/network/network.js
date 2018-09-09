@@ -40,10 +40,6 @@ export function request(method, url, data = {}, header = {'Content-Type': 'appli
   console.log(url)
   console.log(data)
 
-  Taro.showLoading({
-    title: '加载中...'
-  })
-
   // 添加请求参数
   // const params = data || {}
   data.sign = SIGN
@@ -53,8 +49,6 @@ export function request(method, url, data = {}, header = {'Content-Type': 'appli
   console.log(TIMESTAMP)
   console.log(data)
 
-  const response = {};
-
   return new Promise((resolve, reject) => {
     Taro.showLoading({
         title: '加载中...',
@@ -63,16 +57,16 @@ export function request(method, url, data = {}, header = {'Content-Type': 'appli
     Taro.request({
         url, method, data, header,
         success: (res) => {
-           
+            console.log(res)
             if (res.data.code === "0") { 
                 response.success = res.data; // 你将在then方法中看到的数据
             } else {
-                Taro.showToast({
-                    title: res.data.errMsg,
-                    icon: 'none',
-                    duration: 2000
-                })
-                response.fail = res.data.errMsg; // 你将在catch方法中接收到该错误
+                // Taro.showToast({
+                //     title: res.data.errmsg,
+                //     icon: 'none',
+                //     duration: 2000
+                // })
+                // response.fail = res.data.errmsg; // 你将在catch方法中接收到该错误
             }
         },
         fail: (error) => response.fail = error,

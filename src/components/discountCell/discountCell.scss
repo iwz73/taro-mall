@@ -1,0 +1,17 @@
+
+.discountCell {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  font-size: 30px;
+  color: #666;
+  padding: 10px;
+  margin-bottom: 10px;
+
+  .image {
+    width: 100%; // mode = 'widthFix'
+    margin-bottom: 10px;
+  }
+}

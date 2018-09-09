@@ -8,6 +8,7 @@ page {
 /* position: fixed; H5页面有bug 下拉会出现白色页面遮挡 */
 .top {
   position: fixed;
+  z-index: 1;// 设置层级
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -17,7 +18,8 @@ page {
   box-sizing: border-box;
   background: $theme-color;
   height: 90px;
-  
+  // margin-top: taro-navigationBar-height;
+
   .search {
     display: flex;
     flex: 1;
@@ -43,22 +45,67 @@ page {
   }
 }
 
-.banner {
-  background: #fff;
-  margin-top: 90px;
-  height: 300px;
-  width: 100%;
-  
-  image {
+.scrollview {
+  height: 100vh;
+
+  .banner {
+    background: #fff;
+    margin-top: 90px;
+    height: 300px;
     width: 100%;
-    height: 100%;
+    
+    image, img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  
+  .grid {
+    background: #fff;
+    display: inline-block;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .goods-header {
+    font-size: 35px;
+    text-align: center;
+    color: #333333;
+    padding: 10px 0;
+    background: #fff;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .goods-container {
+    width: 100%;
+    padding-left: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    box-sizing: border-box;
   }
 }
 
-.grid {
-  background: #fff;
-  display: inline-block;
-  flex-direction: row;
-  align-items: center;
+.goods-modal {
+  background: rgba($color: #000000, $alpha: .6);
   width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .image {
+    margin-top: 200px;
+    margin-bottom: 50px;
+    width: 400px;
+    height: 400px;
+  }
 }
