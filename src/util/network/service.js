@@ -66,3 +66,30 @@ export const getHomeDisvocerList = (page = 1, size = 10) => {
   )
 }
 
+
+/**
+ * 分类
+ */
+
+/**
+ * 分类列表
+ */
+export const rootCtegoryList = () => {
+  return get(
+    BASEURL + '/api/mall/rootCtegoryList',
+    {}
+  )
+}
+
+/**
+ * 分类商品列边
+ * @param {*} rootCategoryCode 分类的code
+ */
+export const childGoodsCatetoryList = (rootCategoryCode) => {
+  return get(
+    BASEURL + '/api/mall/childGoodsCatetoryList',
+    {
+      rootCategoryCode: rootCategoryCode
+    }
+  )
+}
