@@ -101,15 +101,23 @@ export default class Mine extends Component {
   }
 
   cellDidSclected = (section, index) => {
-    Taro.showToast({
-      title: index.toString(),
-      icon: 'none'
-    })
+    // Taro.showToast({
+    //   title: index.toString(),
+    //   icon: 'none'
+    // })
+    var url = ''
     if (section === 0) {
-
+      if (index === 0) {
+        // 绑定手机号
+        url = '/pages/register/register'
+      }
     } else {
 
     }
+
+    Taro.navigateTo({
+      url: url
+    })
   }
   render() {
     console.log(this.props.counter.userInfo.avatarUrl)

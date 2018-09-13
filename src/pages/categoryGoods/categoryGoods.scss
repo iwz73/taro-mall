@@ -1,0 +1,47 @@
+
+@import '../../app.scss';
+
+.tab {
+  position: fixed;
+  top: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px 0;
+  width: 100%;
+  height: 70px;
+  background: #fff;
+  color: #666;
+  font-size: 30px;
+  box-sizing: border-box;
+
+  .title-image {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .image {
+      width: 30px;
+      height: 30px;
+      margin-left: 5px;
+    }
+  }
+
+  .selected {
+    color: $theme-color
+  }
+
+  .title-image-selected {
+
+  }
+}
+.goods-container {
+  margin-top: 70px;
+  width: 100%;
+  padding-left: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}

@@ -66,6 +66,42 @@ export const getHomeDisvocerList = (page = 1, size = 10) => {
   )
 }
 
+/**
+ * 某一类别商品列表  搜索接口
+ * @param {*} page 
+ * @param {*} size 
+ * @param {*} cateCode 类别code
+ * @param {*} searchKeyWords 关键字
+ * @param {*} sort 排序
+ * @param {*} skuval 尺码
+ */
+export const getCategoryGoodsList = (page, size, cateCode, searchKeyWords, sort, skuval) => {
+  return get(
+    BASEURL + '/api/mall/searchGoodsList',
+    {
+      page: page || 1,
+      size: size || 10,
+      cateCode: cateCode || '',
+      searchKeyWords: searchKeyWords || '',
+      sort: sort || -1,
+      skuval: skuval || ''
+    }
+  )
+}
+
+/**
+ * 商品详情
+ * @param {*} id 商品id
+ */
+export const getGoodsDetail = (id) => {
+  return get(
+    BASEURL + '/api/mall/goods',
+    {
+      id: id
+    }
+  )
+}
+
 
 /**
  * 分类

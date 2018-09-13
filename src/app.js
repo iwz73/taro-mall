@@ -36,7 +36,11 @@ class App extends Component {
       'pages/home/home',
       'pages/classify/classify',
       'pages/shopCart/shopCart',
-      'pages/mine/mine'
+      'pages/mine/mine',
+      'pages/categoryGoods/categoryGoods',
+      'pages/goodsDetail/goodsDetail',
+      'pages/register/register'
+      
     ],
     window: {
       backgroundTextStyle: 'dart',

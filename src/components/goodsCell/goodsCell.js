@@ -15,7 +15,7 @@ export default class GoodsCell extends Taro.Component {
     currentPrice: '现价',
     originalPrice: '原价',
     salesVolume: 0,
-
+    code: ''
   }
   
   static propsType = {
@@ -24,15 +24,23 @@ export default class GoodsCell extends Taro.Component {
     currentPrice: PropTypes.string,
     originalPrice: PropTypes.string,
     salesVolume: PropTypes.number,
+    code: PropTypes.string
+  }
 
+  cellClick = (code) => {
+    console.log(code)
+
+    Taro.navigateTo({
+      url: `/pages/goodsDetail/goodsDetail?code=${code}`
+    })
   }
 
   render() {
 
-    let { imageSrc, goodsName, currentPrice, originalPrice, salesVolume } = this.props
-
+    let { imageSrc, goodsName, currentPrice, originalPrice, salesVolume, code } = this.props
+    
     return(
-      <View className='goodsCell'>
+      <View className='goodsCell' onClick={this.cellClick.bind(this, code)}>
         <Image className='image' src={imageSrc} mode='widthFix'></Image>
         <View className='name'>{goodsName}</View>
         <View className='bottomView'>

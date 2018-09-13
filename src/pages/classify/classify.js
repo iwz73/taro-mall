@@ -83,9 +83,10 @@ export default class Classify extends Component {
   }
 
   goodsClick = (model, index) => {
-    Taro.showToast({
-      title: index.toString(),
-      icon:'none'
+    let code = model.secondCategory.code
+    let title = model.secondCategory.name
+    Taro.navigateTo({
+      url: `/pages/categoryGoods/categoryGoods?title=${title}&code=${code}`
     })
   }
   

@@ -1,0 +1,16 @@
+
+@import '../../app.scss';
+
+.submitBtn {
+  color: white;
+  background: rgba($color: $theme-color, $alpha: 0.5);
+  font-size: 30px;
+  margin-top: 80px;
+  margin-left: 50px;
+  margin-right: 50px;
+  padding: 25px 0;
+  text-align: center;
+}
+.enabled {
+  background: $theme-color
+}

@@ -331,6 +331,7 @@ export default class Home extends Component {
                     currentPrice={model.price}
                     originalPrice={model.marketPrice}
                     salesVolume={model.saleCount}
+                    code={model.id}
                   ></GoodsCell>
                 )
               })
